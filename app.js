@@ -3,41 +3,49 @@ const cashGiven = document.querySelector("#cashgiven");
 const checkButton = document.querySelector("#checkButton");
 const message = document.querySelector("#errormessage");
 const noOfNotes = document.querySelectorAll(".noofnotes");
-
+const nextButton = document.querySelector("#next")
 const notesInData = [2000,500,100,20,10,5,1];
+const changeTable = document.querySelector(".change-table")
+const cashGivenArea = document.querySelector("#cash-section")
 
-checkButton.addEventListener("click" , function validateBillAndCashAmount(){
-    hideMessage();
-    if (billAmount.value > 0 ){
-        if (cashGiven.value >= billAmount.value) {
-            const amountToBeReturned = cashGiven.value - billAmount.value ;
-            calculateChange(amountToBeReturned);
+cashGivenArea.style.display = "none";
+changeTable.style.display = "none";
 
-        } else {
-            showMessage("cash given is lower than bill amount");
-        }
-     } else {
-        showMessage("Invalid bill amount")
+nextButton.addEventListener("click",function validateForward(){
+     if (billAmount.value > 0){
+         cashGivenArea.style.display= "block";
+         hideMessage()
+     }else{
+       showMessage("Invalid Input") 
      }
-} );
+}) 
 
-function calculateChange(amountToBeReturned) {
-
-    for( let i=0; i < notesInData.length ; i++ ){
-        
-       const numberOfNotes = Math.trunc(amountToBeReturned / notesInData[i]);
-
-       amountToBeReturned = amountToBeReturned % notesInData[i] ;
-
-       noOfNotes[i].innerText = numberOfNotes
+checkButton.addEventListener("click",function validateCashAndAmountBill(){
+    if ( cashGiven.value >= billAmount.value ){
+        changeTable.style.display="block"
+        const ammountToGiveBack = cashGiven.value - billAmount.value;
+        changeHandler(ammountToGiveBack)
+        hideMessage()
+    } else {
+         showMessage("want to wash a plate")
     }
-}
+
+})
 
 function hideMessage(){
-    message.style.display = "none" ;
+    message.style.display = "none"
 }
 
+
 function showMessage(msg){
-    message.style.display = "none" ;
-    message.innerText = msg;
+    message.style.display ="block";
+    message.innerText = msg ;
+}
+
+function changeHandler(ammountToGiveBack){
+    for (i=0;i < notesInData.length; i++ ){
+        const numberOfNotes =  Math.trunc(ammountToGiveBack / notesInData[i]);
+        ammountToGiveBack = ammountToGiveBack % notesInData[i];
+        noOfNotes[i].innerText = numberOfNotes;
+    }
 }
