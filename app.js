@@ -1,42 +1,43 @@
-const billAmount = document.querySelector("#bill-amount")
-const cashGiven = document.querySelector("#cash-given")
-const checkButton = document.querySelector("#check-Button")
-const message = document.querySelector("#error-message")
-const noOfNotes = document.querySelector(".no-of-notes")
+const billAmount = document.querySelector("#billamount");
+const cashGiven = document.querySelector("#cashgiven");
+const checkButton = document.querySelector("#checkButton");
+const message = document.querySelector("#errormessage");
+const noOfNotes = document.querySelectorAll(".noofnotes");
 
 const notesInData = [2000,500,100,20,10,5,1];
 
-checkButton.addEventListener("clicked" , function validateBillandCashAmount(){
-    hideMesage();
+checkButton.addEventListener("click" , function validateBillAndCashAmount(){
+    hideMessage();
     if (billAmount.value > 0 ){
-        if (cashGiven.value >= billAmount.value){
-            var amountToBeReturned = cashGiven.value - billAmount.value ;
+        if (cashGiven.value >= billAmount.value) {
+            const amountToBeReturned = cashGiven.value - billAmount.value ;
             calculateChange(amountToBeReturned);
-        }else{
+
+        } else {
             showMessage("cash given is lower than bill amount");
         }
-     }else{
+     } else {
         showMessage("Invalid bill amount")
      }
 } );
 
-function calculateChange(amountToBeReturned){
+function calculateChange(amountToBeReturned) {
 
-    for(i=0; i < notesInData.length ; i++ ){
+    for( let i=0; i < notesInData.length ; i++ ){
         
-       var noOfNotes = Math.trunc(amountToBeReturned/notesInData[i]);
+       const numberOfNotes = Math.trunc(amountToBeReturned / notesInData[i]);
 
        amountToBeReturned = amountToBeReturned % notesInData[i] ;
 
-       notesInData.innerText = noOfNotes
+       noOfNotes[i].innerText = numberOfNotes
     }
 }
 
-function hideMesage(){
+function hideMessage(){
     message.style.display = "none" ;
 }
 
-function showMessage(msges){
+function showMessage(msg){
     message.style.display = "none" ;
-    message.innerText = msges ;
+    message.innerText = msg;
 }
