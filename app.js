@@ -16,7 +16,7 @@ nextButton.addEventListener("click",function validateForward(){
          cashGivenArea.style.display= "block";
          hideMessage()
      }else{
-       showMessage("Invalid Input") 
+       showMessage("Invalid Input")
      }
 }) 
 
@@ -28,6 +28,7 @@ checkButton.addEventListener("click",function validateCashAndAmountBill(){
         hideMessage()
     } else {
          showMessage("want to wash a plate")
+         changeTable.style.display = "none" 
     }
 
 })
