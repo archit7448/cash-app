@@ -8,6 +8,7 @@
 #### HTML5
 #### CSS3
 #### VANILLA JAVASCRIPT
-
+----
+## Link of [App](https://archit-cash-register-app.netlify.app/)
 -----
 #### if you like it don't forget to give star ✨.
